@@ -1,16 +1,13 @@
-import MaxWidthWrapper from '@/components/MaxWidthWrapper'
-import ProductReel from '@/components/ProductReel'
-import {
-  Button,
-  buttonVariants,
-} from '@/components/ui/button'
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import {
   ArrowDownToLine,
   CheckCircle,
   Leaf,
-} from 'lucide-react'
-import Link from 'next/link'
-
+} from 'lucide-react';
+import { Krona_One } from "next/font/google";
+import Link from 'next/link';
+const inter = Krona_One({  weight: '400',
+subsets: ['latin'], });
 const perks = [
   {
     name: 'Instant Delivery',
@@ -35,37 +32,23 @@ const perks = [
 export default function Home() {
   return (
     <>
-      <MaxWidthWrapper>
-        <div className='py-20 mx-auto text-center flex flex-col items-center max-w-3xl'>
-          <h1 className='text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl'>
-            Your marketplace for high-quality{' '}
-            <span className='text-blue-600'>
-              digital assets
-            </span>
-            .
-          </h1>
-          <p className='mt-6 text-lg max-w-prose text-muted-foreground'>
-            Welcome to DigitalHippo. Every asset on our
-            platform is verified by our team to ensure our
-            highest quality standards.
-          </p>
-          <div className='flex flex-col sm:flex-row gap-4 mt-6'>
+      <MaxWidthWrapper className={inter.className}>
+        <div className='py-20 mx-auto text-center flex flex-col items-center max-w-3xl lg:mt-32 md:mt-40 sm:mt-42 mt-40'>
+        <h1 className="{mx-auto max-w-4xl   mb-8 font-display font-medium tracking-tight text-slate-900 text-5xl lg:text-5xl   md:text-5xl sm:text-4xl ">
+        REIFEN ECKMANN </h1>
+        <span className="relative text-cyan-500    lg:text-1xl text-base font-extralight tracking-tight  ">Wir sind die Kraft zwischen Auto und Straße</span>
+
+          <div className='flex flex-col sm:flex-row gap-4 mt-6 mx-12'>
             <Link
-              href='/products'
-              className={buttonVariants()}>
-              Browse Trending
+              href='/terminkalender'
+              className={`bg-slate-900 hover:bg-slate-950 text-sm  ${inter.className} font-semibold   tracking-wider px-14 py-4 rounded-xl uppercase text-white `}>
+              Termin Vereinbaren
             </Link>
-            <Button variant='ghost'>
-              Our quality promise &rarr;
-            </Button>
+           
           </div>
         </div>
 
-        <ProductReel
-          query={{ sort: 'desc', limit: 4 }}
-          href='/products?sort=recent'
-          title='Brand new'
-        />
+        
       </MaxWidthWrapper>
 
       <section className='border-t border-gray-200 bg-gray-50'>

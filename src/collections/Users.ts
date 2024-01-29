@@ -1,5 +1,5 @@
-import { PrimaryActionEmailHtml } from '../components/emails/PrimaryActionEmail'
 import { Access, CollectionConfig } from 'payload/types'
+import { PrimaryActionEmailHtml } from '../components/emails/PrimaryActionEmail'
 
 const adminsAndUser: Access = ({ req: { user } }) => {
   if (user.role === 'admin') return true
@@ -13,6 +13,10 @@ const adminsAndUser: Access = ({ req: { user } }) => {
 
 export const Users: CollectionConfig = {
   slug: 'users',
+  labels: {
+    singular: 'Benutzer',
+    plural: 'Benutzer',
+  },
   auth: {
     verify: {
       generateEmailHTML: ({ token }) => {

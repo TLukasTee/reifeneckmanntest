@@ -1,14 +1,15 @@
-import { buildConfig } from 'payload/config'
 import { webpackBundler } from '@payloadcms/bundler-webpack'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { slateEditor } from '@payloadcms/richtext-slate'
-import path from 'path'
-import { Users } from './collections/Users'
 import dotenv from 'dotenv'
-import { Products } from './collections/Products/Products'
+import path from 'path'
+import { buildConfig } from 'payload/config'
 import { Media } from './collections/Media'
-import { ProductFiles } from './collections/ProductFile'
 import { Orders } from './collections/Orders'
+import { ProductFiles } from './collections/ProductFile'
+import { Products } from './collections/Products/Products'
+import { Users } from './collections/Users'
+
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
@@ -24,10 +25,16 @@ export default buildConfig({
     user: 'users',
     bundler: webpackBundler(),
     meta: {
-      titleSuffix: '- DigitalHippo',
-      favicon: '/favicon.ico',
-      ogImage: '/thumbnail.jpg',
+      titleSuffix: '- HYD',
+      favicon: '/assets/favicon.svg',
+      ogImage: './images/Logo_Eckmann_Schwarz.png',
     },
+    components: {
+      graphics: {
+    
+      },
+    },
+    css: path.resolve(__dirname, './stylesheet.scss'),
   },
   rateLimit: {
     max: 2000,
@@ -40,3 +47,4 @@ export default buildConfig({
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
 })
+

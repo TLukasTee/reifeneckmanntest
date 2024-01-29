@@ -1,8 +1,8 @@
 import dotenv from 'dotenv'
-import path from 'path'
-import type { InitOptions } from 'payload/config'
-import payload, { Payload } from 'payload'
 import nodemailer from 'nodemailer'
+import path from 'path'
+import payload, { Payload } from 'payload'
+import type { InitOptions } from 'payload/config'
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
@@ -64,3 +64,7 @@ export const getPayloadClient = async ({
 
   return cached.client
 }
+
+
+
+

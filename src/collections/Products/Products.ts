@@ -2,10 +2,10 @@ import {
   AfterChangeHook,
   BeforeChangeHook,
 } from 'payload/dist/collections/config/types'
-import { PRODUCT_CATEGORIES } from '../../config'
 import { Access, CollectionConfig } from 'payload/types'
-import { Product, User } from '../../payload-types'
+import { PRODUCT_CATEGORIES } from '../../config'
 import { stripe } from '../../lib/stripe'
+import { Product, User } from '../../payload-types'
 
 const addUser: BeforeChangeHook<Product> = async ({
   req,
@@ -80,6 +80,10 @@ const isAdminOrHasAccess =
 
 export const Products: CollectionConfig = {
   slug: 'products',
+  labels: {
+    singular: 'Produkt',
+    plural: 'Produkte',
+  },
   admin: {
     useAsTitle: 'name',
   },
@@ -152,11 +156,11 @@ export const Products: CollectionConfig = {
     {
       name: 'description',
       type: 'textarea',
-      label: 'Product details',
+      label: 'Produktbeschreibung',
     },
     {
       name: 'price',
-      label: 'Price in USD',
+      label: 'Preis',
       min: 0,
       max: 1000,
       type: 'number',
@@ -164,7 +168,7 @@ export const Products: CollectionConfig = {
     },
     {
       name: 'category',
-      label: 'Category',
+      label: 'Kategorie',
       type: 'select',
       options: PRODUCT_CATEGORIES.map(
         ({ label, value }) => ({ label, value })
@@ -173,7 +177,7 @@ export const Products: CollectionConfig = {
     },
     {
       name: 'product_files',
-      label: 'Product file(s)',
+      label: 'Produktdatei',
       type: 'relationship',
       required: true,
       relationTo: 'product_files',
@@ -181,7 +185,7 @@ export const Products: CollectionConfig = {
     },
     {
       name: 'approvedForSale',
-      label: 'Product Status',
+      label: 'Status',
       type: 'select',
       defaultValue: 'pending',
       access: {
@@ -191,15 +195,15 @@ export const Products: CollectionConfig = {
       },
       options: [
         {
-          label: 'Pending verification',
+          label: 'In Warteschlange',
           value: 'pending',
         },
         {
-          label: 'Approved',
+          label: 'Bestätigt',
           value: 'approved',
         },
         {
-          label: 'Denied',
+          label: 'Abgelehnt',
           value: 'denied',
         },
       ],
@@ -231,7 +235,7 @@ export const Products: CollectionConfig = {
     {
       name: 'images',
       type: 'array',
-      label: 'Product images',
+      label: 'Produktbilder',
       minRows: 1,
       maxRows: 4,
       required: true,
